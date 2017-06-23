@@ -76,7 +76,9 @@ int main(){
                  cout<<"Ingrese el  dinero que le dio el casino para defender apuesta: "<<endl;
                  cin>>dinero;
                  baraja=new Baraja();
-
+                 Personas* repartidor=new Repartidor(nombre,identidad,edad,dificultad,dinero,baraja);
+                 personas.push_back(repartidor);
+                 cout<<"Agregado correctamente"<<endl;
                  break;
                }//fin Repartidor
                case 3:{//agregar jugador
