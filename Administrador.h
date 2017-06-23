@@ -25,5 +25,6 @@ class Administrador:public Personas{
 		string getSueldo();
 		void setSueldo(string);
 
+		virtual void metodo();
 };
 #endif

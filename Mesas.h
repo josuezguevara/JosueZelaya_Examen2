@@ -13,11 +13,11 @@ class Mesas{
 	protected:
 		string num_mesa;
 		string tipo_mesa;
-		Administrador* administrador;
+		//Administrador* administrador;
 		Repartidor* repartidor;
 		Jugador* jugador;
 	public:
-		Mesas(string,string,Administrador*,Repartidor*,Jugador*);
+		Mesas(string,string,Repartidor*,Jugador*);
 		Mesas();
 		string getNum_mesa();
 		void setNum_mesa(string);
@@ -25,8 +25,8 @@ class Mesas{
 		string getTipo_mesa();
 		void setTipo_mesa(string);
 
-		Administrador* getAdministrador();
-		void setAdministrador(Administrador*);
+		/*Administrador* getAdministrador();
+		void setAdministrador(Administrador*);*/
 
 		Repartidor* getRepartidor();
 		void setRepartidor(Repartidor*);

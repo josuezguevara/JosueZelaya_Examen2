@@ -8,6 +8,7 @@
 #include "Cartas.h"
 #include "Jugador.h"
 #include "Mesas.h"
+#include <typeinfo>
 
 using namespace std;
 
@@ -15,6 +16,7 @@ int main(){
 
      bool salir=false;
      vector<Personas*> personas;
+     vector<Mesas*> mesas;
      while(!salir){
        int opcion;
        cout<<"[1]. Registrarse"<<endl;
@@ -86,9 +88,9 @@ int main(){
                  cout<<"Ingrese su Numero de Identidad: "<<endl;
                  cin>>identidad;
                  cout<<"Ingrese su lugar de procedencia: "<<endl;
-                 cin>>lugar:
+                 cin>>lugar;
                  cout<<"Ingrese su apodo en el casino: "<<endl;
-                 cin>>apodo:
+                 cin>>apodo;
                  cout<<"Ingrese su monto total de dinero que lleva: "<<endl;
                  cin>>dinero;
                  Personas* jugador=new Jugador(nombre,identidad,edad,lugar,apodo,dinero);
@@ -106,8 +108,139 @@ int main(){
            break;
          }//fin Registrarse
          case 2:{//login
-           
+           string nombre, identidad;
            cout<<"Ingrese su Nombre: "<<endl;
+           cin>>nombre;
+           cout<<"Ingrese su identidad: "<<endl;
+           cin>>identidad;
+           for (int i = 0; i < personas.size(); i++) {
+             if (nombre==personas[i]->getNombre()&& identidad==personas[i]->getIdentidad()){
+               cout<<"Bienvenido"<<endl;
+               if (dynamic_cast<Administrador*>(personas[i])){
+                 bool libre=false;
+                 while (!libre){
+                   int opcion;
+                   cout<<"Administrador"<<endl;
+                   cout<<"[1]. Crear"<<endl;
+                   cout<<"[2]. Modificar"<<endl;
+                   cout<<"[3]. Eliminar"<<endl;
+                   cout<<"[4]. Listar Jugador y Repartidor"<<endl;
+                   cout<<"[5]. Salir"<<endl;
+                   cout<<"Ingrese opcion: "<<endl;
+                   cin>>opcion;
+                   switch (opcion) {
+                     case 1:{
+                       string num_mesa, tipo_mesa;
+                       Repartidor* repartidor;
+                       Jugador* jugador;
+                       int pos1,pos2;
+                       cout<<"Ingrese Numero de Mesa: "<<endl;
+                       cin>>num_mesa;
+                       cout<<"Ingrese el Tipo de Mesa(VIP,Clasica,Viajero): "<<endl;
+                       cin>>tipo_mesa;
+                       cout<<"Ingrese posicion del Repartidor que quiere agregar a la mesa: "<<endl;
+                       cin>>pos1;
+                       for (int i = 0; i < personas.size(); i++) {
+                          if (dynamic_cast<Repartidor*>(personas[i])){
+                            if (personas[i]==personas[pos1]){
+                              repartidor=static_cast<Repartidor*>(personas[i]);
+                              cout<<"El Repartidor fue agregado "<<endl;
+                            }
+                          }
+                       }
+                       cout<<"Ingrese posicion del Jugador que quiere agregar a la mesa: "<<endl;
+                       cin>>pos2;
+                       for (int i = 0; i < personas.size(); i++) {
+                          if (dynamic_cast<Jugador*>(personas[i])){
+                            if (personas[i]==personas[pos2]){
+                              jugador=static_cast<Jugador*>(personas[i]);
+                              cout<<"El Jugador fue agregado "<<endl;
+                            }
+                          }
+                       }
+                       Mesas* mesa=new Mesas(num_mesa,tipo_mesa,repartidor,jugador);
+                       mesas.push_back(mesa);
+                       break;
+                     }
+                     case 2:{
+                       int pos,pos1,pos2;
+                       string num_mesa;
+                       string tipo_mesa;
+                       Repartidor* repartidor;
+                       Jugador* jugador;
+                       cout<<"Ingrese posicion a Modificar: "<<endl;
+                       cin>>pos;
+                       for (int i = 0; i < mesas.size(); i++) {
+                         if (mesas[i]==mesas[pos]){
+                           cout<<"Ingrese la nueva posicion a Modificar: "<<endl;
+                           cin>>pos;
+                           cout<<"Ingrese el nuevo numero de mesa: "<<endl;
+                           cin>>num_mesa;
+                           cout<<"Ingrese el nuevo Tipo de Mesa(VIP,Clasica,Viajero): "<<endl;
+                           cin>>tipo_mesa;
+                           cout<<"Ingrese nueva posicion del Repartidor que quiere agrega a la mesa: "<<endl;
+                           cin>>pos1;
+                           for (int i = 0; i < personas.size(); i++) {
+                              if (dynamic_cast<Repartidor*>(personas[i])){
+                                if (personas[i]==personas[pos1]){
+                                  repartidor=static_cast<Repartidor*>(personas[i]);
+                                  cout<<"El Repartidor fue agregado "<<endl;
+                                }
+                              }
+                           }
+                           cout<<"Ingrese nueva posicion del Jugador que quiere agregar a la mesa: "<<endl;
+                           cin>>pos2;
+                           for (int i = 0; i < personas.size(); i++) {
+                              if (dynamic_cast<Jugador*>(personas[i])){
+                                if (personas[i]==personas[pos2]){
+                                  jugador=static_cast<Jugador*>(personas[i]);
+                                  cout<<"El Jugador fue agregado "<<endl;
+                                }
+                              }
+                           }
+                           mesas[pos]->setNum_mesa(num_mesa);
+                           mesas[pos]->setTipo_mesa(tipo_mesa);
+                           mesas[pos]->setRepartidor(repartidor);
+                           mesas[pos]->setJugador(jugador);
+                           cout<<"Se ha modificado correctamente"<<endl;
+                         }//fin if
+                       }
+                       break;
+                     }
+                     case 3:{
+                       break;
+                     }
+                     case 4:{
+                       for (int i = 0; i < personas.size(); i++) {
+                         if (dynamic_cast<Repartidor*>(personas[i])){
+                           cout<<"Repartidor"<<endl;
+                           cout<<" [ " <<i<<" ] ";
+                          cout<<" Nombre: "<<personas[i]->getNombre()<< " Identidad:  "
+                          <<personas[i]->getIdentidad()<<endl;
+                        }else if (dynamic_cast<Jugador*>(personas[i])){
+                          cout<<"Jugador"<<endl;
+                          cout<<" [ " <<i<<" ] ";
+                         cout<<" Nombre: "<<personas[i]->getNombre()<< " Identidad:  "
+                         <<personas[i]->getIdentidad()<<endl;
+                        }
+                       }
+                       break;
+                     }
+                     case 5:{
+                       cout<<"Ha salido el Administrador"<<endl;
+                       libre=true;
+                       break;
+                     }
+                   }
+                }
+
+
+               }
+               break;
+             }else{
+               cout<<"Nombre y Identidad Incorrectos"<<endl;
+             }
+           }
            break;
          }//fin login
          case 3:{//salir

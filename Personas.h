@@ -23,5 +23,6 @@ class Personas{
 		int getEdad();
 		void setEdad(int);
 
+		virtual void metodo();
 };
 #endif

@@ -26,3 +26,6 @@ void Administrador::setSueldo(string sueldo){
 string Administrador::getSueldo(){
    return sueldo;
 }
+void Administrador::metodo(){
+
+}

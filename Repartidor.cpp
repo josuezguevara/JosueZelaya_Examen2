@@ -25,3 +25,6 @@ void Repartidor::setBaraja(Baraja* baraja){
 Baraja* Repartidor::getBaraja(){
    return baraja;
 }
+void Repartidor::metodo(){
+
+}

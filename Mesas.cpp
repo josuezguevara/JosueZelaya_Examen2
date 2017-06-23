@@ -1,9 +1,8 @@
 #include "Mesas.h"
 
-Mesas::Mesas(string num_mesa,string tipo_mesa,Administrador* administrador,Repartidor* repartidor,Jugador* jugador){
+Mesas::Mesas(string num_mesa,string tipo_mesa,Repartidor* repartidor,Jugador* jugador){
 	this->num_mesa=num_mesa;
 	this->tipo_mesa=tipo_mesa;
-	this->administrador=administrador;
 	this->repartidor=repartidor;
 	this->jugador=jugador;
 }
@@ -21,12 +20,12 @@ void Mesas::setTipo_mesa(string tipo_mesa){
 string Mesas::getTipo_mesa(){
    return tipo_mesa;
 }
-void Mesas::setAdministrador(Administrador* administrador){
+/*void Mesas::setAdministrador(Administrador* administrador){
    this-> administrador=administrador;
 }
 Administrador* Mesas::getAdministrador(){
    return administrador;
-}
+}*/
 void Mesas::setRepartidor(Repartidor* repartidor){
    this-> repartidor=repartidor;
 }

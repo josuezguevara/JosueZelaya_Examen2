@@ -25,3 +25,7 @@ void Personas::setEdad(int edad){
 int Personas::getEdad(){
    return edad;
 }
+
+void Personas::metodo(){
+
+}

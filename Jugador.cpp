@@ -25,3 +25,7 @@ void Jugador::setDinero(string dinero){
 string Jugador::getDinero(){
    return dinero;
 }
+
+void Jugador::metodo(){
+
+}

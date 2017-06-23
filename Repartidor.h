@@ -25,5 +25,7 @@ class Repartidor:public Personas{
 		Baraja* getBaraja();
 		void setBaraja(Baraja*);
 
+		virtual void metodo();
+
 };
 #endif
