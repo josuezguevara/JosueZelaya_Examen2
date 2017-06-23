@@ -208,6 +208,11 @@ int main(){
                        break;
                      }
                      case 3:{
+                       int pos;
+                       cout<<"Ingrese posicion a eliminar"<<endl;
+                       cin>>pos;
+                       mesas.erase(mesas.begin()+pos);
+                       cout<<"Se ha eliminado correctamente"<<endl;
                        break;
                      }
                      case 4:{
@@ -235,7 +240,10 @@ int main(){
                 }
 
 
-               }
+              }//fin si es Administrador
+              else if (dynamic_cast<Jugador*>(personas[i])) {
+                cout<<"Jugador"<<endl;
+              }
                break;
              }else{
                cout<<"Nombre y Identidad Incorrectos"<<endl;
