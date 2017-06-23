@@ -175,8 +175,6 @@ int main(){
                        cin>>pos;
                        for (int i = 0; i < mesas.size(); i++) {
                          if (mesas[i]==mesas[pos]){
-                           cout<<"Ingrese la nueva posicion a Modificar: "<<endl;
-                           cin>>pos;
                            cout<<"Ingrese el nuevo numero de mesa: "<<endl;
                            cin>>num_mesa;
                            cout<<"Ingrese el nuevo Tipo de Mesa(VIP,Clasica,Viajero): "<<endl;
@@ -246,6 +244,7 @@ int main(){
               }//fin si es Administrador
               else if (dynamic_cast<Jugador*>(personas[i])) {
                 cout<<"Jugador"<<endl;
+
 
               }
                break;
