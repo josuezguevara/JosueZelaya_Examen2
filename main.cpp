@@ -75,6 +75,7 @@ int main(){
                  cin>>dificultad;
                  cout<<"Ingrese el  dinero que le dio el casino para defender apuesta: "<<endl;
                  cin>>dinero;
+                 baraja=new Baraja();
 
                  break;
                }//fin Repartidor
@@ -243,6 +244,7 @@ int main(){
               }//fin si es Administrador
               else if (dynamic_cast<Jugador*>(personas[i])) {
                 cout<<"Jugador"<<endl;
+
               }
                break;
              }else{
