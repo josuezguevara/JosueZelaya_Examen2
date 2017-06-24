@@ -260,7 +260,8 @@ int main(){
                       for (int j = 0; j < mesas.size(); j++) {
                         if (personas[i]==mesas[j]->getJugador()){//el jugador juega en la mesa puesta
                           string dinero_jugador;
-                          dinero_jugador=personas[i]->getDinero();
+                          int valor;
+                          //dinero_jugador=personas[i]->getDinero();
                         }
                       }//fin for mesa
                       break;
