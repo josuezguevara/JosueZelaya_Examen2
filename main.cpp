@@ -170,45 +170,51 @@ int main(){
                        break;
                      }
                      case 2:{
-                       int pos,pos1,pos2;
-                       string num_mesa;
-                       string tipo_mesa;
-                       Repartidor* repartidor;
-                       Jugador* jugador;
-                       cout<<"Ingrese posicion a Modificar: "<<endl;
-                       cin>>pos;
-                       for (int i = 0; i < mesas.size(); i++) {
-                         if (mesas[i]==mesas[pos]){
-                           cout<<"Ingrese el nuevo numero de mesa: "<<endl;
-                           cin>>num_mesa;
-                           cout<<"Ingrese el nuevo Tipo de Mesa(VIP,Clasica,Viajero): "<<endl;
-                           cin>>tipo_mesa;
-                           cout<<"Ingrese nueva posicion(vector) del Repartidor que quiere agrega a la mesa: "<<endl;
-                           cin>>pos1;
-                           for (int i = 0; i < personas.size(); i++) {
-                              if (dynamic_cast<Repartidor*>(personas[i])){
-                                if (personas[i]==personas[pos1]){
-                                  repartidor=static_cast<Repartidor*>(personas[i]);
-                                  cout<<"El Repartidor fue agregado "<<endl;
-                                }
+                       if (mesas.size()==0){
+                         cout<<"No se puede modificar no hay mesas"<<endl;
+                       }else{
+                         int pos,pos1,pos2;
+                         string num_mesa;
+                         string tipo_mesa;
+                         Repartidor* repartidor;
+                         Jugador* jugador;
+                         cout<<"Ingrese posicion a Modificar: "<<endl;
+                         cin>>pos;
+                          //for (int i = 0; i < mesas.size(); i++) {
+                           //if (mesas[i]==mesas[pos]){
+                         cout<<"Ingrese el nuevo numero de mesa: "<<endl;
+                         cin>>num_mesa;
+                         cout<<"Ingrese el nuevo Tipo de Mesa(VIP,Clasica,Viajero): "<<endl;
+                         cin>>tipo_mesa;
+                         cout<<"Ingrese nueva posicion(vector) del Repartidor que quiere agrega a la mesa: "<<endl;
+                         cin>>pos1;
+                         for (int i = 0; i < personas.size(); i++) {
+                           if (dynamic_cast<Repartidor*>(personas[i])){
+                             if (personas[i]==personas[pos1]){
+                               repartidor=static_cast<Repartidor*>(personas[i]);
+                              cout<<"El Repartidor fue agregado "<<endl;
                               }
-                           }
-                           cout<<"Ingrese nueva posicion(vector) del Jugador que quiere agregar a la mesa: "<<endl;
-                           cin>>pos2;
-                           for (int i = 0; i < personas.size(); i++) {
-                              if (dynamic_cast<Jugador*>(personas[i])){
-                                if (personas[i]==personas[pos2]){
-                                  jugador=static_cast<Jugador*>(personas[i]);
-                                  cout<<"El Jugador fue agregado "<<endl;
-                                }
+                            }
+                          }
+                          cout<<"Ingrese nueva posicion(vector) del Jugador que quiere agregar a la mesa: "<<endl;
+                          cin>>pos2;
+                          for (int i = 0; i < personas.size(); i++) {
+                            if (dynamic_cast<Jugador*>(personas[i])){
+                              if (personas[i]==personas[pos2]){
+                                jugador=static_cast<Jugador*>(personas[i]);
+                                cout<<"El Jugador fue agregado "<<endl;
                               }
-                           }
-                           mesas[pos]->setNum_mesa(num_mesa);
-                           mesas[pos]->setTipo_mesa(tipo_mesa);
-                           mesas[pos]->setRepartidor(repartidor);
-                           mesas[pos]->setJugador(jugador);
-                           cout<<"Se ha modificado correctamente"<<endl;
-                         }//fin if
+                            }
+                          }
+                          mesas.at(pos)->setNum_mesa(num_mesa);
+                          mesas.at(pos)->setTipo_mesa(tipo_mesa);
+                          mesas.at(pos)->setRepartidor(repartidor);
+                          mesas.at(pos)->setJugador(jugador);
+                          cout<<"Se ha modificado correctamente"<<endl;
+                         //}//fin if
+                         //else{
+                           //cout<<"No son iguales las posiciones"<<endl;
+                         //}
                        }
                        break;
                      }
