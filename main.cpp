@@ -133,36 +133,40 @@ int main(){
                    cin>>opcion;
                    switch (opcion) {
                      case 1:{
-                       string num_mesa, tipo_mesa;
-                       Repartidor* repartidor;
-                       Jugador* jugador;
-                       int pos1,pos2;
-                       cout<<"Ingrese Numero de Mesa: "<<endl;
-                       cin>>num_mesa;
-                       cout<<"Ingrese el Tipo de Mesa(VIP,Clasica,Viajero): "<<endl;
-                       cin>>tipo_mesa;
-                       cout<<"Ingrese posicion del Repartidor que quiere agregar a la mesa: "<<endl;
-                       cin>>pos1;
-                       for (int i = 0; i < personas.size(); i++) {
-                          if (dynamic_cast<Repartidor*>(personas[i])){
-                            if (personas[i]==personas[pos1]){
-                              repartidor=static_cast<Repartidor*>(personas[i]);
-                              cout<<"El Repartidor fue agregado "<<endl;
+                       if (personas.size()==0){
+                         cout<<"No se puede agregar mesas, no hay Repartidores y Jugadores"<<endl;
+                       }else{
+                         string num_mesa, tipo_mesa;
+                         Repartidor* repartidor;
+                         Jugador* jugador;
+                         int pos1,pos2;
+                         cout<<"Ingrese Numero de Mesa: "<<endl;
+                         cin>>num_mesa;
+                         cout<<"Ingrese el Tipo de Mesa(VIP,Clasica,Viajero): "<<endl;
+                         cin>>tipo_mesa;
+                         cout<<"Ingrese posicion(vector) del Repartidor que quiere agregar a la mesa: "<<endl;
+                         cin>>pos1;
+                         for (int i = 0; i < personas.size(); i++) {
+                            if (dynamic_cast<Repartidor*>(personas[i])){
+                              if (personas[i]==personas[pos1]){
+                                repartidor=static_cast<Repartidor*>(personas[i]);
+                                cout<<"El Repartidor fue agregado "<<endl;
+                              }
                             }
-                          }
-                       }
-                       cout<<"Ingrese posicion del Jugador que quiere agregar a la mesa: "<<endl;
-                       cin>>pos2;
-                       for (int i = 0; i < personas.size(); i++) {
-                          if (dynamic_cast<Jugador*>(personas[i])){
-                            if (personas[i]==personas[pos2]){
-                              jugador=static_cast<Jugador*>(personas[i]);
-                              cout<<"El Jugador fue agregado "<<endl;
+                         }
+                         cout<<"Ingrese posicion(vector) del Jugador que quiere agregar a la mesa: "<<endl;
+                         cin>>pos2;
+                         for (int i = 0; i < personas.size(); i++) {
+                            if (dynamic_cast<Jugador*>(personas[i])){
+                              if (personas[i]==personas[pos2]){
+                                jugador=static_cast<Jugador*>(personas[i]);
+                                cout<<"El Jugador fue agregado "<<endl;
+                              }
                             }
-                          }
+                         }
+                         Mesas* mesa=new Mesas(num_mesa,tipo_mesa,repartidor,jugador);
+                         mesas.push_back(mesa);
                        }
-                       Mesas* mesa=new Mesas(num_mesa,tipo_mesa,repartidor,jugador);
-                       mesas.push_back(mesa);
                        break;
                      }
                      case 2:{
@@ -179,7 +183,7 @@ int main(){
                            cin>>num_mesa;
                            cout<<"Ingrese el nuevo Tipo de Mesa(VIP,Clasica,Viajero): "<<endl;
                            cin>>tipo_mesa;
-                           cout<<"Ingrese nueva posicion del Repartidor que quiere agrega a la mesa: "<<endl;
+                           cout<<"Ingrese nueva posicion(vector) del Repartidor que quiere agrega a la mesa: "<<endl;
                            cin>>pos1;
                            for (int i = 0; i < personas.size(); i++) {
                               if (dynamic_cast<Repartidor*>(personas[i])){
@@ -189,7 +193,7 @@ int main(){
                                 }
                               }
                            }
-                           cout<<"Ingrese nueva posicion del Jugador que quiere agregar a la mesa: "<<endl;
+                           cout<<"Ingrese nueva posicion(vector) del Jugador que quiere agregar a la mesa: "<<endl;
                            cin>>pos2;
                            for (int i = 0; i < personas.size(); i++) {
                               if (dynamic_cast<Jugador*>(personas[i])){
@@ -210,7 +214,7 @@ int main(){
                      }
                      case 3:{
                        int pos;
-                       cout<<"Ingrese posicion a eliminar"<<endl;
+                       cout<<"Ingrese posicion(vector mesas) a eliminar"<<endl;
                        cin>>pos;
                        mesas.erase(mesas.begin()+pos);
                        cout<<"Se ha eliminado correctamente"<<endl;
@@ -242,11 +246,36 @@ int main(){
 
 
               }//fin si es Administrador
-              else if (dynamic_cast<Jugador*>(personas[i])) {
-                cout<<"Jugador"<<endl;
+              else if (dynamic_cast<Jugador*>(personas[i])) {//JUgador
+                cout<<"Bienvenido Jugador"<<endl;
+                bool libre=false;
+                while(!libre){
+                  int opcion;
+                  cout<<"[1]. Jugar"<<endl;
+                  cout<<"[2]. Salir"<<endl;
+                  cout<<"[3]. Ingrese opcion: "<<endl;
+                  cin>>opcion;
+                  switch (opcion) {
+                    case 1:{//jugar
+                      for (int j = 0; j < mesas.size(); j++) {
+                        if (personas[i]==mesas[j]->getJugador()){//el jugador juega en la mesa puesta
+
+                        }
+                      }//fin for mesa
+                      break;
+                    }//fin jugar
+                    case 2:{
+                      cout<<"Ha salido el Jugador"<<endl;
+                      libre=true;
+                      break;
+                    }
+                  }
+
+                }
 
 
-              }
+
+              }//fin Jugador
                break;
              }else{
                cout<<"Nombre y Identidad Incorrectos"<<endl;
